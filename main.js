@@ -4,8 +4,8 @@ function HashMap(loadFactor = 0.75) {
     // and fill each of slot as separate empty array
 
 
-    function getBucketsForTest() {
-        return buckets;
+    function getBucketsForTest() { // just getter function to expose buckets for test
+        return buckets; 
     }
 
     function hash(key) {
