@@ -4,15 +4,15 @@ function HashMap(loadFactor = 0.75) {
     // and fill each of slot as separate empty array
 
 
-    function getBucketsForTest() { // just getter function to expose buckets for test
+    function getBucketsForTest() { // getter function to expose buckets for test
         return buckets; 
     }
 
     function hash(key) {
-        let hashCode = 0;
+        let hashCode = 0; // initial multiplier for hashing
 
         const primeNumber = 31;
-        for (let i = 0; i < key.length; i++) {
+        for (let i = 0; i < key.length; i++) { // for each item/letter in key
             hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % capacity;
         }
         return hashCode;
@@ -21,7 +21,7 @@ function HashMap(loadFactor = 0.75) {
     function set(key, value) {
         const index = hash(key);
         const bucket = buckets[index]; // empty array inside buckets array with 
-        // index of hashCOde
+        // index of hashCode
 
         for (let pair of bucket) {
             if (pair[0] === key) { // pair split by bey and value, so pair[0] is key
