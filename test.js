@@ -3,41 +3,41 @@ import { HashMap } from "./main.js";
 const test = HashMap();
 
 // testing while developing for capacity 16
-// console.log(test.hash("Arlecchino"));
+console.log(test.hash("Arlecchino"));
 
-// test.set("apple", "red");
-// test.set("banana", "yellow");
-// test.set("carrot", "orange");
+test.set("apple", "red");
+test.set("banana", "yellow");
+test.set("carrot", "orange");
 
-// console.log(test.getBucketsForTest());
+console.log(test.getBucketsForTest());
 
-// console.log(test.get("apple"));
-// console.log(test.get("banana"));
-// console.log(test.get("carrot"));
+console.log(test.get("apple"));
+console.log(test.get("banana"));
+console.log(test.get("carrot"));
 
-// console.log(test.has("apple"));
-// console.log(test.has("banana"));
-// console.log(test.has("watermelon"));
+console.log(test.has("apple"));
+console.log(test.has("banana"));
+console.log(test.has("watermelon"));
 
-// console.log(test.remove("banana"));
+console.log(test.remove("banana"));
 
-// console.log(test.getBucketsForTest());
+console.log(test.getBucketsForTest());
 
-// console.log(test.length());
+console.log(test.length());
 
-// test.clear();
+test.clear();
 
-// console.log(test.getBucketsForTest());
+console.log(test.getBucketsForTest());
 
-// test.set("BWM", "red");
-// test.set("Audi", "yellow");
-// test.set("Mercedes", "orange");
+test.set("BWM", "red");
+test.set("Audi", "yellow");
+test.set("Mercedes", "orange");
 
-// console.log(test.getBucketsForTest());
+console.log(test.getBucketsForTest());
 
-// console.log(test.keys());
-// console.log(test.values());
-// console.log(test.entries());
+console.log(test.keys());
+console.log(test.values());
+console.log(test.entries());
 
 // tsting for capacity 16 and 32 (mostly 32)
 
@@ -56,14 +56,14 @@ test.set('lion', 'golden');
 test.set('moon', 'silver')
 
 
-// console.log(test.getBucketsForTest());
+console.log(test.getBucketsForTest());
 
 test.set("apple", "green");
 // console.log(test.length());
 
 
-// console.log(test.getBucketsForTest());
-// console.log(test.length());
+console.log(test.getBucketsForTest());
+console.log(test.length());
 
 test.set("elephant", "white");
 test.set("hat", "white");
