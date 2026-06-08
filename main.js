@@ -1,6 +1,7 @@
 export function HashMap(loadFactor = 0.75) {
-    let capacity = loadFactor === 0.75 ? 16 : 0; // if lF = 0.75 , cap = 16
-    const buckets = [...Array(capacity)].map(() => []); // creating new array for storage
+    let capacity = 16;
+    let size = 0;
+    let buckets = [...Array(capacity)].map(() => []); // creating new array for storage
     // and fill each of slot as separate empty array
 
 
@@ -19,21 +20,39 @@ export function HashMap(loadFactor = 0.75) {
         return hashCode;
     }
 
+    function resize() {
+        const bucketsOld = buckets;
+        capacity *= 2;
+        buckets = [...Array(capacity)].map(() => []) // new array after capacity doubled
 
+        for (const bucket of bucketsOld) {
+            for (const [key, value] of bucket) { //rehashing values from prev buckets
+                const index = hash(key);
+                buckets[index].push([key, value]);
+            }
+        }
+    }
 
 
     function set(key, value) {
-        const index = hash(key);
-        const bucket = buckets[index]; // empty array inside buckets array with 
-        // index of hashCode
-        for (let pair of bucket) {
-            if (pair[0] === key) { // pair split by bey and value, so pair[0] is key
+        let index = hash(key);
+        let bucket = buckets[index];
+
+        for (let pair of bucket) { // checking if key exist 
+            if (pair[0] === key) { // pair split by key and value, so pair[0] is key
                 pair[1] = value; // update value
                 return;
             }
         }
 
+        if ((size + 1) / capacity > loadFactor) {
+            resize();
+        }
+
+        index = hash(key);
+        bucket = buckets[index];
         bucket.push([key, value]);
+        size++;
     }
 
 
@@ -74,6 +93,7 @@ export function HashMap(loadFactor = 0.75) {
 
             if (pair[0] === key) {
                 bucket.splice(i, 1); // starting at index i, remove 1 pair/ element
+                size--;
                 return true;
             }
         }
@@ -83,17 +103,7 @@ export function HashMap(loadFactor = 0.75) {
 
 
     function length() {
-
-        let count = 0;
-
-        for (let i = 0; i < buckets.length; i++) {
-            const bucket = buckets[i]; // each bucket
-
-            for (const pair of bucket) {
-                count++; // counting pairs, cause if no pair = no key
-            }
-        }
-        return count;
+        return size;
     }
 
     function clear() {
@@ -101,6 +111,7 @@ export function HashMap(loadFactor = 0.75) {
             bucket.length = 0;
         }
 
+        size = 0;
         console.log("HashMap cleared");
     }
 
@@ -116,16 +127,38 @@ export function HashMap(loadFactor = 0.75) {
         return keys;
     }
 
+    function values() {
+        let values = [];
+        for (let i = 0; i < buckets.length; i++) {
+            for (const pair of buckets[i]) {
+                values.push(pair[1])
+            }
+        }
+        return values;
+    }
+
+    function entries() {
+        let entries = [];
+
+        for (let i = 0; i < buckets.length; i++) {
+            for (const pair of buckets[i]) {
+                entries.push(pair);
+            }
+        }
+        return entries;
+    }
+
 
     return {
         getBucketsForTest,
-        hash,
         set,
         get,
         has,
         remove,
         length,
         clear,
-        keys
+        keys,
+        values,
+        entries
     }
 }
