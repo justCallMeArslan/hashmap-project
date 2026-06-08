@@ -13,7 +13,6 @@ console.log(test.get("apple"));
 console.log(test.get("banana"));
 console.log(test.get("carrot"));
 
-
 console.log(test.has("apple"));
 console.log(test.has("banana"));
 console.log(test.has("watermelon"));
@@ -23,3 +22,15 @@ console.log(test.remove("banana"));
 console.log(test.getBucketsForTest());
 
 console.log(test.length());
+
+test.clear();
+
+console.log(test.getBucketsForTest());
+
+test.set("BWM", "red");
+test.set("Audi", "yellow");
+test.set("Mercedes", "orange");
+
+console.log(test.getBucketsForTest());
+
+console.log(test.keys());

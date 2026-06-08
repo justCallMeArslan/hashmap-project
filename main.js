@@ -96,6 +96,26 @@ export function HashMap(loadFactor = 0.75) {
         return count;
     }
 
+    function clear() {
+        for (const bucket of buckets) {
+            bucket.length = 0;
+        }
+
+        console.log("HashMap cleared");
+    }
+
+    function keys() {
+
+        let keys = [];
+
+        for (let i = 0; i < buckets.length; i++) {
+            for (const pair of buckets[i]) {
+                keys.push(pair[0]);
+            }
+        }
+        return keys;
+    }
+
 
     return {
         getBucketsForTest,
@@ -104,8 +124,8 @@ export function HashMap(loadFactor = 0.75) {
         get,
         has,
         remove,
-        length
-
-
+        length,
+        clear,
+        keys
     }
 }
