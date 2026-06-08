@@ -3,7 +3,6 @@ import { HashMap } from "./main.js";
 const test = HashMap();
 
 // testing while developing for capacity 16
-console.log(test.hash("Arlecchino"));
 
 test.set("apple", "red");
 test.set("banana", "yellow");
