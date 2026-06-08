@@ -18,3 +18,8 @@ console.log(test.has("apple"));
 console.log(test.has("banana"));
 console.log(test.has("watermelon"));
 
+console.log(test.remove("banana"));
+
+console.log(test.getBucketsForTest());
+
+console.log(test.length());

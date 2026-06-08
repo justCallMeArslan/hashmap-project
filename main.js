@@ -64,9 +64,37 @@ export function HashMap(loadFactor = 0.75) {
         return false;
     }
 
+    function remove(key) {
+        const index = hash(key);
+        const bucket = buckets[index];
 
 
+        for (let i = 0; i < bucket.length; i++) {
+            const pair = bucket[i]; // for consistency, can be done with bucket[i][0] 
 
+            if (pair[0] === key) {
+                bucket.splice(i, 1); // starting at index i, remove 1 pair/ element
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    function length() {
+
+        let count = 0;
+
+        for (let i = 0; i < buckets.length; i++) {
+            const bucket = buckets[i]; // each bucket
+
+            for (const pair of bucket) {
+                count++; // counting pairs, cause if no pair = no key
+            }
+        }
+        return count;
+    }
 
 
     return {
@@ -74,7 +102,10 @@ export function HashMap(loadFactor = 0.75) {
         hash,
         set,
         get,
-        has
+        has,
+        remove,
+        length
+
 
     }
 }
