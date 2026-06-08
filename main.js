@@ -22,7 +22,7 @@ export function HashMap(loadFactor = 0.75) {
 
     function resize() {
         const bucketsOld = buckets;
-        capacity *= 2;
+        capacity *= 2; // doubling capacity
         buckets = [...Array(capacity)].map(() => []) // new array after capacity doubled
 
         for (const bucket of bucketsOld) {
@@ -162,3 +162,5 @@ export function HashMap(loadFactor = 0.75) {
         entries
     }
 }
+
+
